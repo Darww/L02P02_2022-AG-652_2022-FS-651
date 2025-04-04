@@ -1,0 +1,12 @@
+﻿@model Autor
+
+<h2>Nuevo Autor</h2>
+
+@using (Html.BeginForm())
+{
+    <label>Nombre:</label>
+    @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control" })
+
+    <button type="submit">Guardar</button>
+}
+
