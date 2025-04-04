@@ -1,0 +1,43 @@
+﻿@model List<ComentarioLibro>
+@{
+    ViewData["Title"] = "Comentarios del Libro";
+    var libro = ViewBag.Libro as Libro;
+}
+
+<div class="container">
+    <ul class="progressbar">
+        <li>Autores</li>
+        <li>Libros</li>
+        <li class="active">Comentarios Existentes</li>
+        <li>Nuevo Comentario</li>
+    </ul>
+</div>
+
+<h2>Comentarios por Libros</h2>
+<p>Seleccione el autor -> Seleccione el Libro -> Se muestran los comentarios existentes -> Adicione un nuevo comentario</p>
+
+<h3>Autor: @libro.Autor.Nombre</h3>
+<h3>Libro: @libro.Nombre</h3>
+
+<h4>Comentarios Existentes</h4>
+@foreach (var comentario in Model)
+{
+    <div>
+        <strong>@comentario.Usuario</strong>
+        <p>@comentario.Comentarios</p>
+        <small>@comentario.CreatedAt.ToString("g")</small>
+    </div>
+}
+
+<h4>Agregar un Comentario</h4>
+@using (Html.BeginForm("AgregarComentario", "Comentarios", FormMethod.Post))
+{
+    <input type="hidden" name="idLibro" value="@libro.Id" />
+    <div class="form-group">
+        @Html.TextArea("texto", "", new { @class = "form-control", rows = 3, placeholder = "Escribe tu comentario aquí..." })
+    </div>
+    <div class="form-group">
+        @Html.TextBox("usuario", "", new { @class = "form-control", placeholder = "Tu nombre (opcional)" })
+    </div>
+    <button type="submit" class="btn btn-success">Guardar Comentario</button>
+}

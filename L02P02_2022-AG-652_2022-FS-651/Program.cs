@@ -5,7 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddDbContext<libreriaDbContext>(opt =>
+builder.Services.AddDbContext<LibreriaDbContext>(opt =>
         opt.UseSqlServer(
             builder.Configuration.GetConnectionString("libreriaDbConnection")
             )

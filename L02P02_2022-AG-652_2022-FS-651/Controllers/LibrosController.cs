@@ -14,9 +14,23 @@ public class LibrosController : Controller
 
     public IActionResult Index()
     {
-        var libros = _context.Libros.Include(l => l.Autor).Include(l => l.Categoria).ToList();
-        return View(libros);
+        try
+        {
+            var libros = _context.Libros
+                .Include(l => l.Autor)
+                .Include(l => l.Categoria)
+                .ToList();
+
+            return View(libros);
+        }
+        catch (Exception ex)
+        {
+            // Log del error
+            Console.WriteLine($"Error al cargar libros: {ex.Message}");
+            return View(new List<Libro>());
+        }
     }
+
 
     public IActionResult Crear()
     {

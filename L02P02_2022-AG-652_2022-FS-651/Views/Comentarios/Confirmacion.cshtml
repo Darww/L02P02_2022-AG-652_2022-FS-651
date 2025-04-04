@@ -1,0 +1,27 @@
+﻿@model ComentarioLibro
+@{
+    ViewData["Title"] = "Comentario Agregado";
+}
+
+<div class="container">
+    <ul class="progressbar">
+        <li>Autores</li>
+        <li>Libros</li>
+        <li>Comentarios Existentes</li>
+        <li class="active">Nuevo Comentario</li>
+    </ul>
+</div>
+
+<h2>Comentarios por Libros</h2>
+<p>Seleccione el autor -> Seleccione el Libro -> Se muestran los comentarios existentes -> Adicione un nuevo comentario</p>
+
+<h3>Autor: @Model.Libro.Autor.Nombre</h3>
+<h3>Libro: @Model.Libro.Nombre</h3>
+
+<div class="alert alert-success">
+    <h4>¡Comentario Adicionado con éxito!</h4>
+    <p>@Model.Comentarios</p>
+    <small>Publicado por @Model.Usuario el @Model.CreatedAt.ToString("g")</small>
+</div>
+
+<a href="@Url.Action("Index", "Autores")" class="btn btn-primary">Volver al inicio</a>

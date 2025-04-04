@@ -1,0 +1,29 @@
+﻿@model Libro
+
+<h2>Agregar Nuevo Libro</h2>
+
+@using (Html.BeginForm())
+{
+    <label>Nombre:</label>
+    @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control" })
+
+    <label>Descripción:</label>
+    @Html.TextBoxFor(model => model.Descripcion, new { @class = "form-control" })
+
+    <label>Imagen URL:</label>
+    @Html.TextBoxFor(model => model.UrlImagen, new { @class = "form-control" })
+
+    <label>Autor:</label>
+    @Html.DropDownListFor(model => model.IdAutor, (SelectList)ViewBag.Autores, "--Seleccione--", new { @class = "form-control" })
+
+    <label>Categoría:</label>
+    @Html.DropDownListFor(model => model.IdCategoria, (SelectList)ViewBag.Categorias, "--Seleccione--", new { @class = "form-control" })
+
+    <label>Precio:</label>
+    @Html.TextBoxFor(model => model.Precio, new { @class = "form-control" })
+
+    <label>Estado:</label>
+    @Html.DropDownListFor(model => model.Estado, new SelectList(new[] { new { Id = 'A', Nombre = "Activo" }, new { Id = 'I', Nombre = "Inactivo" } }, "Id", "Nombre"), "--Seleccione--", new { @class = "form-control" })
+
+    <button type="submit" class="btn btn-success">Guardar</button>
+}
